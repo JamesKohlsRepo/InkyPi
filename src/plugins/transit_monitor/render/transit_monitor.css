@@ -1,0 +1,55 @@
+:root{
+  --pad-x: 10px;
+  --pad-y: 40px; /* reserve top/bottom deadspace */
+  --gap: 10px;
+  --card-h: 60px; /* 3 cards in 400x300 with margins */
+}
+
+/* canvas */
+body{ margin:0; width:400px; height:300px; background:#fff; color:#000;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+
+.grid{
+  display:flex; flex-direction:column; gap:var(--gap);
+  padding:var(--pad-y) var(--pad-x); height:100%; box-sizing:border-box;
+}
+
+/* card: two columns separated by a single vertical divider */
+.card{
+  display:grid;
+  grid-template-columns: 56px 1fr;  /* left narrow, right wide */
+  align-items:center;
+  height:var(--card-h);
+  border:2px solid var(--border-color, #2b7b4b);
+  border-radius:10px;
+  background:#f8f8f8;
+  padding:8px 10px;
+  column-gap:10px;
+}
+
+/* left: the line square */
+.left{ display:flex; align-items:center; justify-content:center; }
+.line-box{
+  width:44px; height:44px; border-radius:8px;
+  background:var(--border, #000); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:18px;
+}
+
+/* right: add the single vertical divider on its left edge */
+.right{
+  border-left:3px solid var(--border, #000);   /* <-- the one divider */
+  padding-left:10px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+
+/* text */
+.headline{ font-size:18px; font-weight:700; }
+.eta{ margin-left:6px; font-size:16px; opacity:.8; }
+.dest{ margin-top:4px; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* color themes for specific lines */
+.card[data-line^="22"] { --border-color: #e74c3c; } /* red-ish */
+.card[data-line^="6"] { --border-color: #3498db; } /* blue-ish */
+.card[data-line^="J"] { --border-color: #27ae60; } /* green-ish */
+.card[data-line^="K"] { --border-color: #f39c12; } /* orange-ish */
